@@ -1,22 +1,6 @@
 import styled, { css } from "styled-components";
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "../components/Header";
-
-import bgDeskHome from "../assets/home/background-home-desktop.jpg";
-import bgTabHome from "../assets/home/background-home-tablet.jpg";
-import bgMobHome from "../assets/home/background-home-mobile.jpg";
-
-import bgDeskDest from "../assets/destination/background-destination-desktop.jpg";
-import bgTabDest from "../assets/destination/background-destination-tablet.jpg";
-import bgMobDest from "../assets/destination/background-destination-mobile.jpg";
-
-import bgDeskCrew from "../assets/crew/background-crew-desktop.jpg";
-import bgTabCrew from "../assets/crew/background-crew-tablet.jpg";
-import bgMobCrew from "../assets/crew/background-crew-mobile.jpg";
-
-import bgDeskTech from "../assets/technology/background-technology-desktop.jpg";
-import bgTabTech from "../assets/technology/background-technology-tablet.jpg";
-import bgMobTech from "../assets/technology/background-technology-mobile.jpg";
+import Header from "../components/Header/Header";
 
 const StyledAppLayout = styled.div`
   display: flex;
@@ -27,24 +11,24 @@ const StyledAppLayout = styled.div`
   background-repeat: no-repeat;
 
   ${(props) =>
-    props.bgMobile &&
+    props.$bgmobile &&
     css`
-      background-image: url(${props.bgMobile});
+      background-image: url(${props.$bgmobile});
     `}
 
-  @media (min-width: 768px) {
+  @media (min-width: 35rem) {
     ${(props) =>
-      props.bgTablet &&
+      props.$bgtablet &&
       css`
-        background-image: url(${props.bgTablet});
+        background-image: url(${props.$bgtablet});
       `}
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 64rem) {
     ${(props) =>
-      props.bgDesktop &&
+      props.$bgdesktop &&
       css`
-        background-image: url(${props.bgDesktop});
+        background-image: url(${props.$bgdesktop});
       `}
   }
 `;
@@ -60,28 +44,28 @@ function AppLayout() {
     switch (location.pathname) {
       case "/destination":
         return {
-          mobile: bgMobDest,
-          tablet: bgTabDest,
-          desktop: bgDeskDest,
+          mobile: "/assets/destination/background-destination-mobile.jpg",
+          tablet: "/assets/destination/background-destination-tablet.jpg",
+          desktop: "/assets/destination/background-destination-desktop.jpg",
         };
       case "/crew":
         return {
-          mobile: bgMobCrew,
-          tablet: bgTabCrew,
-          desktop: bgDeskCrew,
+          mobile: "/assets/crew/background-crew-mobile.jpg",
+          tablet: "/assets/crew/background-crew-tablet.jpg",
+          desktop: "/assets/crew/background-crew-desktop.jpg",
         };
       case "/technology":
         return {
-          mobile: bgMobTech,
-          tablet: bgTabTech,
-          desktop: bgDeskTech,
+          mobile: "/assets/technology/background-technology-mobile.jpg",
+          tablet: "/assets/technology/background-technology-tablet.jpg",
+          desktop: "/assets/technology/background-technology-desktop.jpg",
         };
       case "/":
       default:
         return {
-          mobile: bgMobHome,
-          tablet: bgTabHome,
-          desktop: bgDeskHome,
+          mobile: "/assets/home/background-home-mobile.jpg",
+          tablet: "/assets/home/background-home-tablet.jpg",
+          desktop: "/assets/home/background-home-desktop.jpg",
         };
     }
   };
@@ -89,7 +73,7 @@ function AppLayout() {
   const { mobile, tablet, desktop } = getBackgroundImages();
 
   return (
-    <StyledAppLayout bgMobile={mobile} bgTablet={tablet} bgDesktop={desktop}>
+    <StyledAppLayout $bgmobile={mobile} $bgtablet={tablet} $bgdesktop={desktop}>
       <Header />
       <Main>
         <Outlet />

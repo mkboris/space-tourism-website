@@ -1,12 +1,21 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { media } from "../styles/theme";
 
-const Img = styled.img``;
+const StyledLogo = styled.img`
+  width: 40px;
+
+  ${media.tablet} {
+    width: 48px;
+  }
+`;
 
 function Logo() {
   return (
     <Link to="/">
-      <Img src="/logo.svg" alt="Logo" />
+      <div>
+        <StyledLogo src="/logo.svg" alt="space tourism logo" />
+      </div>
     </Link>
   );
 }

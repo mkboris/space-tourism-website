@@ -15,7 +15,8 @@ const GlobalStyles = createGlobalStyle`
 
   /* font-sizes */
   /* desktop */
-  --fs-xl: 150px;
+  --fs-xl: clamp(5rem, 9vw + 1.5rem, 9.375rem);
+  --fs-btn: clamp(1.125rem, 1.5vw + 1rem, 2rem);
   --fs-lg: 100px;
   --fs-md: 56px;
   --fs-sm: 32px;
@@ -40,6 +41,11 @@ const GlobalStyles = createGlobalStyle`
   --fs-xs-mob: 16px;
   --fs-body-mob: 15px;
   --fs-nav-mob: 14px;
+
+  /* font-weight */
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-700: 700;
 }
 
 /* RESET */

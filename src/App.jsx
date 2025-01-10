@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
-import Home from "./pages/Home";
-import Destination from "./pages/Destination";
-import Crew from "./pages/Crew";
-import Technology from "./pages/Technology";
-import PageNotFound from "./pages/PageNotFound";
+import Home from "./pages/Home/Home";
+import Destination from "./pages/Destination/Destination";
+import Crew from "./pages/Crew/Crew";
+import Technology from "./pages/Technology/Technology";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 function App() {
   return (
