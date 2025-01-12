@@ -17,26 +17,52 @@ const Heading = styled.h1`
       gap: 1.5rem;
 
       ${media.tablet} {
-        font-size: var(--fs-xs);
-        letter-spacing: 0.15em;
+        font-size: var(--fs-xs-tab);
         align-self: flex-start;
       }
 
       ${media.desktop} {
+        font-size: var(--fs-xs);
       }
     `}
 
   ${(props) =>
     props.as === "h2" &&
     css`
-      font-size: 2rem;
+      font-family: var(--ff-bellfair);
+      font-weight: var(--fw-400);
+      font-size: var(--fs-sm-mob);
+      text-transform: uppercase;
+      color: var(--clr-white);
+      mix-blend-mode: normal;
+      opacity: 0.5;
+
+      ${media.tablet} {
+        font-size: var(--fs-sm-tab);
+      }
+
+      ${media.desktop} {
+        font-size: var(--fs-sm);
+      }
     `}
 
     
   ${(props) =>
     props.as === "h3" &&
     css`
-      font-size: 2rem;
+      font-family: var(--ff-bellfair);
+      font-weight: var(--fw-400);
+      font-size: var(--fs-md-mob);
+      text-transform: uppercase;
+      color: var(--clr-white);
+
+      ${media.tablet} {
+        font-size: var(--fs-md-tab);
+      }
+
+      ${media.desktop} {
+        font-size: var(--fs-md);
+      }
     `}
 `;
 

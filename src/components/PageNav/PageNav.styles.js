@@ -45,41 +45,42 @@ export const NavList = styled.ul`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  &:link,
-  &:visited {
-    font-family: var(--ff-barlow);
-    font-size: var(--fs-nav);
-    color: var(--clr-white);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
+  position: relative;
+  font-family: var(--ff-barlow);
+  font-size: var(--fs-nav);
+  color: var(--clr-white);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-bottom: 1rem;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: width 0.3s ease;
   }
 
-  &:hover,
-  &:active,
-  &.active:link,
-  &.active:visited {
-    border-right: 3px solid var(--clr-white);
-    padding-right: 30px;
+  &:hover::after {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
-  &:hover {
-    border-right: 3px solid rgba(255, 255, 255, 0.5);
+  &.active::after {
+    width: 100%;
+    background-color: var(--clr-white);
   }
 
   ${media.tablet} {
-    &:hover,
-    &:active,
-    &.active:link,
-    &.active:visited {
-      border-right: none;
-      padding-right: 0;
-      border-bottom: 3px solid var(--clr-white);
-      padding-bottom: 2.375rem;
-    }
+    padding-bottom: 2.375rem;
 
-    &:hover {
-      border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+    &::after {
+      height: 3px;
     }
   }
 `;

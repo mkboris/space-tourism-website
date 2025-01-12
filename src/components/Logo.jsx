@@ -14,10 +14,7 @@ function Logo() {
   return (
     <Link to="/">
       <div>
-        <StyledLogo
-          src="/public/assets/shared/logo.svg"
-          alt="space tourism logo"
-        />
+        <StyledLogo src="/assets/shared/logo.svg" alt="space tourism logo" />
       </div>
     </Link>
   );

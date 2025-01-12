@@ -93,15 +93,22 @@ export const StyledButton = styled.button`
   text-transform: uppercase;
   background: transparent;
   border: transparent;
+  border-bottom: 3px solid transparent;
   padding: 0 0 0.9375rem 0;
+  transition: all 0.3s ease;
 
   &.active {
     color: var(--clr-white);
     border-bottom: 3px solid var(--clr-white);
   }
+
   &:not(.active) {
     color: var(--clr-fog);
-    border-bottom: none;
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
   }
 
   ${media.tablet} {
