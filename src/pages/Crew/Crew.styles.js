@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 
-export const Container = styled.div`
+export const StyledCrew = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,24 +21,6 @@ export const Container = styled.div`
     max-width: 69.375rem;
     margin-inline: auto;
     gap: 2.5625rem;
-  }
-`;
-
-export const Span = styled.span`
-  font-weight: var(--fw-700);
-  font-size: var(--fs-xs-mob);
-  letter-spacing: 0.15em;
-  color: var(--clr-white);
-  opacity: 0.25;
-  mix-blend-mode: normal;
-
-  ${media.tablet} {
-    font-size: var(--fs-xs-tab);
-  }
-
-  ${media.desktop} {
-    font-size: var(--fs-xs);
-    letter-spacing: 4.725px;
   }
 `;
 
@@ -134,17 +116,5 @@ export const Header = styled.header`
 
   ${media.tablet} {
     gap: 1rem;
-  }
-`;
-
-export const Paragraph = styled.p`
-  font-family: var(--ff-barlow);
-  font-weight: var(--fw-400);
-  font-size: var(--fs-xs-mob);
-  line-height: 180%;
-  color: var(--clr-fog);
-
-  ${media.desktop} {
-    font-size: var(--fs-body);
   }
 `;

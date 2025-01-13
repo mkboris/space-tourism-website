@@ -1,41 +1,6 @@
-import styled, { css } from "styled-components";
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "../components/Header/Header";
-
-const StyledAppLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  ${(props) =>
-    props.$bgmobile &&
-    css`
-      background-image: url(${props.$bgmobile});
-    `}
-
-  @media (min-width: 35rem) {
-    ${(props) =>
-      props.$bgtablet &&
-      css`
-        background-image: url(${props.$bgtablet});
-      `}
-  }
-
-  @media (min-width: 64rem) {
-    ${(props) =>
-      props.$bgdesktop &&
-      css`
-        background-image: url(${props.$bgdesktop});
-      `}
-  }
-`;
-
-const Main = styled.main`
-  flex: 1;
-`;
+import Header from "../../components/Header/Header";
+import { StyledAppLayout, Main } from "./AppLayout.styles";
 
 function AppLayout() {
   const location = useLocation();

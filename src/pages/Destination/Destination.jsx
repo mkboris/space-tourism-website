@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Heading from "../../components/Heading";
+import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
-  Container,
-  Span,
+  StyledDestination,
   StyledTabbed,
   Img,
   Content,
@@ -11,7 +10,6 @@ import {
   StyledButton,
   Article,
   Title,
-  Paragraph,
   Line,
   Stats,
   Stat,
@@ -23,13 +21,13 @@ function Destination() {
   const { destinations } = data;
 
   return (
-    <Container>
+    <StyledDestination>
       <Heading as="h1">
         <Span aria-hidden="true">01</Span>PICK YOUR DESTINATION
       </Heading>
 
       <Tabbed destinations={destinations} />
-    </Container>
+    </StyledDestination>
   );
 }
 
@@ -58,7 +56,7 @@ function Tabbed({ destinations }) {
 
 function Tabs({ destinations, activeTab, setActiveTab }) {
   return (
-    <StyledTabs>
+    <StyledTabs role="tablist">
       {destinations.map((destination, index) => (
         <Tab
           key={destination.name}

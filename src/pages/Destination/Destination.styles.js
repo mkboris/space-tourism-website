@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { media } from "../../styles/theme";
 
-export const Container = styled.div`
+export const StyledDestination = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,24 +20,6 @@ export const Container = styled.div`
     max-width: 69.375rem;
     margin-inline: auto;
     gap: 8.6875rem;
-  }
-`;
-
-export const Span = styled.span`
-  font-weight: var(--fw-700);
-  font-size: var(--fs-xs-mob);
-  letter-spacing: 0.15em;
-  color: var(--clr-white);
-  opacity: 0.25;
-  mix-blend-mode: normal;
-
-  ${media.tablet} {
-    font-size: var(--fs-xs-tab);
-  }
-
-  ${media.desktop} {
-    font-size: var(--fs-xs);
-    letter-spacing: 4.725px;
   }
 `;
 
@@ -85,6 +67,7 @@ export const StyledTabs = styled.div`
 `;
 
 export const StyledButton = styled.button`
+  position: relative;
   font-family: var(--ff-barlow);
   font-size: var(--fs-nav-mob);
   font-weight: var(--fw-400);
@@ -93,22 +76,28 @@ export const StyledButton = styled.button`
   text-transform: uppercase;
   background: transparent;
   border: transparent;
-  border-bottom: 3px solid transparent;
   padding: 0 0 0.9375rem 0;
   transition: all 0.3s ease;
 
-  &.active {
-    color: var(--clr-white);
-    border-bottom: 3px solid var(--clr-white);
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: width 0.3s ease;
   }
 
-  &:not(.active) {
-    color: var(--clr-fog);
+  &:hover::after {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
-  &:hover,
-  &:focus {
-    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  &.active::after {
+    width: 100%;
+    background-color: var(--clr-white);
   }
 
   ${media.tablet} {
@@ -131,6 +120,7 @@ export const Title = styled.h2`
   text-transform: uppercase;
   text-align: center;
   color: var(--clr-white);
+  padding-block-start: 1rem;
 
   ${media.tablet} {
     font-size: var(--fs-lg-tab);
@@ -139,21 +129,6 @@ export const Title = styled.h2`
   ${media.desktop} {
     font-size: var(--fs-lg);
     text-align: left;
-  }
-`;
-
-export const Paragraph = styled.p`
-  font-family: var(--ff-barlow);
-  font-weight: var(--fw-400);
-  font-size: var(--fs-xs-mob);
-  line-height: 180%;
-  text-align: center;
-  color: var(--clr-fog);
-  padding-top: 1rem;
-
-  ${media.desktop} {
-    text-align: left;
-    font-size: var(--fs-body);
   }
 `;
 

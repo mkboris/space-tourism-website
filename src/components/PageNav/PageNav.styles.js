@@ -78,10 +78,6 @@ export const StyledNavLink = styled(NavLink)`
 
   ${media.tablet} {
     padding-bottom: 2.375rem;
-
-    &::after {
-      height: 3px;
-    }
   }
 `;
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { media } from "../../styles/theme";
 
-export const Container = styled.div`
+export const StyledHome = styled.div`
   display: grid;
   place-content: center;
   gap: 7.4375rem;
@@ -33,7 +33,7 @@ export const Content = styled.div`
 export const Heading = styled.h1`
   font-family: var(--ff-barlow);
   font-weight: var(--fw-400);
-  font-size: var(--fs-xs-mob);
+  font-size: var(--fs-xlg);
   text-align: center;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -41,11 +41,6 @@ export const Heading = styled.h1`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-
-  ${media.tablet} {
-    font-size: var(--fs-xs);
-    letter-spacing: 0.15em;
-  }
 
   ${media.desktop} {
     text-align: left;
@@ -58,28 +53,10 @@ export const Span = styled.span`
   color: var(--clr-white);
 `;
 
-export const Paragraph = styled.p`
-  font-family: var(--ff-barlow);
-  font-weight: var(--fw-400);
-  font-size: var(--fs-body-mob);
-  line-height: 180%;
-  text-align: center;
-  color: var(--clr-fog);
-
-  ${media.tablet} {
-    font-size: var(--fs-body);
-  }
-
-  ${media.desktop} {
-    text-align: left;
-  }
-`;
-
-export const Wrapper = styled.div`
+export const ActionWrapper = styled.div`
   justify-self: center;
 
   ${media.desktop} {
-    /* justify-self: end; */
     align-self: flex-end;
   }
 `;
@@ -109,11 +86,11 @@ export const StyledLink = styled(Link)`
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     opacity: 0;
-    transition: opacity 500ms linear, transform 750ms ease-in-out;
+    transition: opacity 750ms linear, transform 750ms ease-in-out;
   }
 
   &:hover::after,
-  &:focus::after {
+  &:focus-visible::after {
     opacity: 1;
     transform: scale(1.5);
   }

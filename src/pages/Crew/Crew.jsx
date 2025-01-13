@@ -1,30 +1,28 @@
 import { useState } from "react";
-import Heading from "../../components/Heading";
+import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
-  Container,
+  StyledCrew,
   StyledTabbed,
   Content,
-  Span,
   Img,
   Article,
   Header,
   StyledTabs,
   StyledButton,
-  Paragraph,
 } from "./Crew.styles";
 
 function Crew() {
   const { crew } = data;
 
   return (
-    <Container>
+    <StyledCrew>
       <Heading as="h1">
         <Span aria-hidden="true">02</Span>MEET THE CREW
       </Heading>
 
       <Tabbed crew={crew} />
-    </Container>
+    </StyledCrew>
   );
 }
 
@@ -63,9 +61,9 @@ function TabContent({ crewMember }) {
 function Tabs({ crew, activeTab, setActiveTab }) {
   return (
     <StyledTabs>
-      {crew.map((crew, index) => (
+      {crew.map((member, index) => (
         <Tab
-          key={crew.name}
+          key={member.name}
           isActive={index === activeTab}
           onClick={() => setActiveTab(index)}
         ></Tab>
@@ -74,14 +72,12 @@ function Tabs({ crew, activeTab, setActiveTab }) {
   );
 }
 
-function Tab({ children, isActive, onClick }) {
+function Tab({ isActive, onClick }) {
   return (
     <StyledButton
       onClick={onClick}
       aria-selected={isActive}
       className={isActive ? "active" : ""}
-    >
-      {children}
-    </StyledButton>
+    ></StyledButton>
   );
 }

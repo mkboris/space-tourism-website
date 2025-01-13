@@ -1,21 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { Container, Box } from "./PageNotFound.styles";
+import { StyledPageNotFound, Box, Button } from "./PageNotFound.styles";
+import { Heading } from "../../components/Typography";
 
 function PageNotFound() {
   const moveBack = useMoveBack();
 
   return (
-    <Container>
+    <StyledPageNotFound>
       <Box>
-        {/* <Heading as="h1"> */}
-        <h1>The page you are looking for could not be found 😢</h1>
-        {/* </Heading> */}
-
-        <button onClick={moveBack} size="large">
+        <Heading style={{ alignSelf: "center" }} as="h1">
+          Sorry, we can’t find the page you’re looking for
+        </Heading>
+        <Button onClick={moveBack} size="large">
           &larr; Go back
-        </button>
+        </Button>
       </Box>
-    </Container>
+    </StyledPageNotFound>
   );
 }
 

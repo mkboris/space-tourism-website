@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
   /* font-sizes */
   /* desktop */
   --fs-xl: clamp(5rem, 9vw + 1.5rem, 9.375rem);
+  --fs-xlg: clamp(1rem, 1vw + 0.9rem, 1.75rem);
   --fs-btn: clamp(1.125rem, 1.5vw + 1rem, 2rem);
   --fs-lg: 100px;
   --fs-md: 56px;

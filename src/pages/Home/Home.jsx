@@ -1,16 +1,16 @@
+import { Paragraph } from "../../components/Typography";
 import {
-  Container,
+  StyledHome,
   Content,
   Heading,
   Span,
-  Paragraph,
-  Wrapper,
+  ActionWrapper,
   StyledLink,
 } from "../Home/Home.styles";
 
 function Home() {
   return (
-    <Container>
+    <StyledHome>
       <Content>
         <Heading>
           So, you want to travel to
@@ -25,10 +25,15 @@ function Home() {
         </Paragraph>
       </Content>
 
-      <Wrapper>
-        <StyledLink to="/destination">Explore</StyledLink>
-      </Wrapper>
-    </Container>
+      <ActionWrapper>
+        <StyledLink
+          to="/destination"
+          aria-label="Navigate to destinations page"
+        >
+          Explore
+        </StyledLink>
+      </ActionWrapper>
+    </StyledHome>
   );
 }
 
