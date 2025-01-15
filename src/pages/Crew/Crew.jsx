@@ -35,7 +35,7 @@ function Tabbed({ crew }) {
   return (
     <StyledTabbed>
       <Content>
-        <TabContent crewMember={activeCrew} />
+        <TabContent crewMember={activeCrew} index={activeTab} />
 
         <Tabs crew={crew} activeTab={activeTab} setActiveTab={setActiveTab} />
       </Content>
@@ -45,9 +45,9 @@ function Tabbed({ crew }) {
   );
 }
 
-function TabContent({ crewMember }) {
+function TabContent({ crewMember, index }) {
   return (
-    <Article>
+    <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
       <Header>
         <Heading as="h2">{crewMember.role}</Heading>
         <Heading as="h3">{crewMember.name}</Heading>
@@ -60,23 +60,26 @@ function TabContent({ crewMember }) {
 
 function Tabs({ crew, activeTab, setActiveTab }) {
   return (
-    <StyledTabs>
+    <StyledTabs role="tablist">
       {crew.map((member, index) => (
         <Tab
           key={member.name}
           isActive={index === activeTab}
           onClick={() => setActiveTab(index)}
+          index={index}
         ></Tab>
       ))}
     </StyledTabs>
   );
 }
 
-function Tab({ isActive, onClick }) {
+function Tab({ isActive, onClick, index }) {
   return (
     <StyledButton
+      role="tab"
       onClick={onClick}
       aria-selected={isActive}
+      aria-controls={`tab-panel-${index}`}
       className={isActive ? "active" : ""}
     ></StyledButton>
   );

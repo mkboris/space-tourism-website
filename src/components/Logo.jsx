@@ -2,6 +2,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { media } from "../styles/theme";
 
+const StyledLink = styled(Link)`
+  &:focus-visible {
+    outline: 2px solid var(--clr-fog);
+    outline-offset: 4px;
+  }
+`;
+
 const StyledLogo = styled.img`
   width: 40px;
 
@@ -12,11 +19,11 @@ const StyledLogo = styled.img`
 
 function Logo() {
   return (
-    <Link to="/">
+    <StyledLink to="/">
       <div>
         <StyledLogo src="/assets/shared/logo.svg" alt="space tourism logo" />
       </div>
-    </Link>
+    </StyledLink>
   );
 }
 

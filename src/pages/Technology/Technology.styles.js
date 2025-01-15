@@ -116,6 +116,11 @@ export const StyledButton = styled.button`
     border: 1px solid var(--clr-white);
   }
 
+  &:focus-visible {
+    outline: 3px solid var(--clr-fog);
+    outline-offset: 3px;
+  }
+
   ${media.tablet} {
     font-size: var(--fs-sm-tab);
   }

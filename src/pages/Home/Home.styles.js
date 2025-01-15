@@ -95,6 +95,11 @@ export const StyledLink = styled(Link)`
     transform: scale(1.5);
   }
 
+  &:focus-visible {
+    outline: 3px solid var(--clr-fog);
+    outline-offset: 3px;
+  }
+
   ${media.tablet} {
     padding: 0 2.1em;
   }

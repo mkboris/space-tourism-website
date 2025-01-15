@@ -44,6 +44,11 @@ export const StyledHamburgerBtn = styled.button`
   background: transparent;
   border: transparent;
 
+  &:focus-visible {
+    outline: 2px solid var(--clr-fog);
+    outline-offset: 4px;
+  }
+
   ${media.tablet} {
     display: none;
   }

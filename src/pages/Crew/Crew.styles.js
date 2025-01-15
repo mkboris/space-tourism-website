@@ -93,6 +93,11 @@ export const StyledButton = styled.button`
     opacity: 0.5;
   }
 
+  &:focus-visible {
+    outline: 3px solid var(--clr-fog);
+    outline-offset: 3px;
+  }
+
   ${media.desktop} {
     padding: 0.5em;
   }

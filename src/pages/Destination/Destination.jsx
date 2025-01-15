@@ -48,7 +48,7 @@ function Tabbed({ destinations }) {
           setActiveTab={setActiveTab}
         />
 
-        <TabContent destination={activeDestination} />
+        <TabContent destination={activeDestination} index={activeTab} />
       </Content>
     </StyledTabbed>
   );
@@ -62,6 +62,7 @@ function Tabs({ destinations, activeTab, setActiveTab }) {
           key={destination.name}
           isActive={index === activeTab}
           onClick={() => setActiveTab(index)}
+          index={index}
         >
           {destination.name}
         </Tab>
@@ -70,11 +71,13 @@ function Tabs({ destinations, activeTab, setActiveTab }) {
   );
 }
 
-function Tab({ children, isActive, onClick }) {
+function Tab({ children, isActive, onClick, index }) {
   return (
     <StyledButton
+      role="tab"
       onClick={onClick}
       aria-selected={isActive}
+      aria-controls={`tab-panel-${index}`}
       className={isActive ? "active" : ""}
     >
       {children}
@@ -82,9 +85,9 @@ function Tab({ children, isActive, onClick }) {
   );
 }
 
-function TabContent({ destination }) {
+function TabContent({ destination, index }) {
   return (
-    <Article>
+    <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
       <Title>{destination.name}</Title>
       <Paragraph>{destination.description}</Paragraph>
 

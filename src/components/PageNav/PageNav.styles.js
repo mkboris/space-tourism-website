@@ -76,6 +76,12 @@ export const StyledNavLink = styled(NavLink)`
     background-color: var(--clr-white);
   }
 
+  &:focus-visible {
+    outline: none;
+    border-bottom: 3px solid var(--clr-fog);
+    outline-offset: 3px;
+  }
+
   ${media.tablet} {
     padding-bottom: 2.375rem;
   }
@@ -101,6 +107,11 @@ export const StyledCloseBtn = styled.button`
   padding: 0;
   background: transparent;
   border: transparent;
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-fog);
+    outline-offset: 4px;
+  }
 
   ${media.tablet} {
     display: none;

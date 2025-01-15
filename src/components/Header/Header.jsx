@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Logo from "../Logo";
 import PageNav from "../PageNav/PageNav";
 import { StyledHeader, StyledHamburgerBtn } from "./Header.styles";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
 
   function handleOpenMenu() {
     setIsOpen(true);
@@ -14,11 +15,29 @@ function Header() {
     setIsOpen(false);
   }
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <StyledHeader>
       <Logo />
       <HamburgerBtn isOpen={isOpen} onOpenMenu={handleOpenMenu} />
-      <PageNav isOpen={isOpen} onCloseMenu={handleCloseMenu} />
+      <PageNav ref={menuRef} isOpen={isOpen} onCloseMenu={handleCloseMenu} />
     </StyledHeader>
   );
 }

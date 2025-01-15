@@ -58,15 +58,15 @@ function Tabbed({ technology }) {
           setActiveTab={setActiveTab}
         />
 
-        <TabContent techType={activeTechnology} />
+        <TabContent techType={activeTechnology} index={activeTab} />
       </Content>
     </StyledTabbed>
   );
 }
 
-function TabContent({ techType }) {
+function TabContent({ techType, index }) {
   return (
-    <Article>
+    <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
       <Header>
         <Heading as="h2">THE TERMINOLOGY…</Heading>
         <Heading as="h3">{techType.name}</Heading>
@@ -79,12 +79,13 @@ function TabContent({ techType }) {
 
 function Tabs({ activeTab, setActiveTab }) {
   return (
-    <StyledTabs>
+    <StyledTabs role="tablist">
       {[0, 1, 2].map((tabIndex) => (
         <Tab
           key={tabIndex}
           isActive={activeTab === tabIndex}
           onClick={() => setActiveTab(tabIndex)}
+          index={tabIndex}
         >
           {tabIndex + 1}
         </Tab>
@@ -93,11 +94,13 @@ function Tabs({ activeTab, setActiveTab }) {
   );
 }
 
-function Tab({ children, isActive, onClick }) {
+function Tab({ children, isActive, onClick, index }) {
   return (
     <StyledButton
+      role="tab"
       onClick={onClick}
       aria-selected={isActive}
+      aria-controls={`tab-panel-${index}`}
       className={isActive ? "active" : ""}
     >
       {children}

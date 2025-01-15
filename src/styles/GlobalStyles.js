@@ -18,30 +18,30 @@ const GlobalStyles = createGlobalStyle`
   --fs-xl: clamp(5rem, 9vw + 1.5rem, 9.375rem);
   --fs-xlg: clamp(1rem, 1vw + 0.9rem, 1.75rem);
   --fs-btn: clamp(1.125rem, 1.5vw + 1rem, 2rem);
-  --fs-lg: 100px;
-  --fs-md: 56px;
-  --fs-sm: 32px;
-  --fs-xs: 28px;
-  --fs-lg-sub: 28px;
-  --fs-body: 18px;
-  --fs-nav: 16px;
-  --fs-sm-sub: 14px;
+  --fs-lg: 6.25rem;
+  --fs-md: 3.5rem;
+  --fs-sm: 2rem;
+  --fs-xs: 1.75rem;
+  --fs-lg-sub: 1.75rem;
+  --fs-body: 1.125rem;
+  --fs-nav: 1rem;
+  --fs-sm-sub: 0.875rem;
 
   /* tablet */
-  --fs-lg-tab: 80px;
-  --fs-md-tab: 40px;
-  --fs-sm-tab: 24px;
-  --fs-xs-tab: 20px;
-  --fs-body-tab: 16px;
+  --fs-lg-tab: 5rem;
+  --fs-md-tab: 2.5rem;
+  --fs-sm-tab: 1.5rem;
+  --fs-xs-tab: 1.25rem;
+  --fs-body-tab: 1rem;
 
   /* mobile */
-  --fs-xl-mob: 80px;
-  --fs-lg-mob: 56px;
-  --fs-md-mob: 24px;
-  --fs-sm-mob: 18px;
-  --fs-xs-mob: 16px;
-  --fs-body-mob: 15px;
-  --fs-nav-mob: 14px;
+  --fs-xl-mob: 5rem;
+  --fs-lg-mob: 3.5rem;
+  --fs-md-mob: 1.5rem;
+  --fs-sm-mob: 1.125rem;
+  --fs-xs-mob: 1rem;
+  --fs-body-mob: 0.9375rem;
+  --fs-nav-mob: 0.875rem;
 
   /* font-weight */
   --fw-400: 400;
@@ -174,18 +174,6 @@ textarea:not([rows]) {
   html {
     scroll-behavior: smooth;
   }
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 button {

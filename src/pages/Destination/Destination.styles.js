@@ -100,6 +100,11 @@ export const StyledButton = styled.button`
     background-color: var(--clr-white);
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--clr-fog);
+    outline-offset: 3px;
+  }
+
   ${media.tablet} {
     font-size: var(--fs-nav);
   }

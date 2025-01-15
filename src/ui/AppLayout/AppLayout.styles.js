@@ -8,6 +8,7 @@ export const StyledAppLayout = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: var(--clr-cinder);
 
   ${(props) =>
     props.$bgmobile &&

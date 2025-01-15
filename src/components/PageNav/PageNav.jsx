@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import {
   Nav,
   NavList,
@@ -6,35 +7,37 @@ import {
   StyledCloseBtn,
 } from "./PageNav.styles";
 
-function PageNav({ isOpen, onCloseMenu }) {
+const PageNav = forwardRef(({ isOpen, onCloseMenu }, ref) => {
   return (
-    <Nav $isOpen={isOpen}>
+    <Nav ref={ref} $isOpen={isOpen}>
       <CloseBtn onCloseMenu={onCloseMenu} aria-label="Close menu" />
       <NavList>
         <li>
-          <StyledNavLink to="/">
+          <StyledNavLink to="/" onClick={onCloseMenu}>
             <Span aria-hidden="true">00</Span> Home
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/destination">
+          <StyledNavLink to="/destination" onClick={onCloseMenu}>
             <Span aria-hidden="true">01</Span> Destination
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/crew">
+          <StyledNavLink to="/crew" onClick={onCloseMenu}>
             <Span aria-hidden="true">02</Span> Crew
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/technology">
+          <StyledNavLink to="/technology" onClick={onCloseMenu}>
             <Span aria-hidden="true">03</Span> Technology
           </StyledNavLink>
         </li>
       </NavList>
     </Nav>
   );
-}
+});
+
+PageNav.displayName = "PageNav";
 
 function CloseBtn({ onCloseMenu }) {
   return (
