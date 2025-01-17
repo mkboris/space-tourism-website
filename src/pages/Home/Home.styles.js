@@ -19,7 +19,7 @@ export const StyledHome = styled.div`
     grid-template-columns: 1fr 1fr;
     max-width: 69.375rem;
     margin-inline: auto;
-    padding-block: 25.625rem 8rem;
+    padding-block: 15rem 8rem;
   }
 `;
 
@@ -58,6 +58,7 @@ export const ActionWrapper = styled.div`
 
   ${media.desktop} {
     align-self: flex-end;
+    justify-self: flex-end;
   }
 `;
 
