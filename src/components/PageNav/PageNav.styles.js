@@ -1,6 +1,28 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { media } from "../../styles/theme";
+
+const slideIn = keyframes`
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const slideOut = keyframes`
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+`;
 
 export const Nav = styled.nav`
   display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
@@ -12,12 +34,18 @@ export const Nav = styled.nav`
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(40px);
 
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  animation: ${({ $isOpen }) => ($isOpen ? slideIn : slideOut)} 0.5s ease-in-out
+    forwards;
+
   ${media.tablet} {
     padding-top: 0;
     display: flex;
     flex-direction: row;
     position: relative;
     inset: 0;
+    animation: none;
+    transform: none;
   }
 
   ${media.desktop} {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
@@ -40,7 +41,15 @@ function Tabbed({ crew }) {
         <Tabs crew={crew} activeTab={activeTab} setActiveTab={setActiveTab} />
       </Content>
 
-      <Img src={activeCrew.images.png} alt={activeCrew.name} />
+      <motion.div
+        key={activeCrew.name}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.9 }}
+      >
+        <Img src={activeCrew.images.png} alt={activeCrew.name} />
+      </motion.div>
     </StyledTabbed>
   );
 }
@@ -49,11 +58,42 @@ function TabContent({ crewMember, index }) {
   return (
     <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
       <Header>
-        <Heading as="h2">{crewMember.role}</Heading>
-        <Heading as="h3">{crewMember.name}</Heading>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={crewMember.role}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
+            <Heading as="h2">{crewMember.role}</Heading>
+          </motion.div>
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={crewMember.name}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+          >
+            <Heading as="h3">{crewMember.name}</Heading>
+          </motion.div>
+        </AnimatePresence>
       </Header>
 
-      <Paragraph>{crewMember.bio}</Paragraph>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={crewMember.bio}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 10 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
+        >
+          <Paragraph>{crewMember.bio}</Paragraph>
+        </motion.div>
+      </AnimatePresence>
     </Article>
   );
 }

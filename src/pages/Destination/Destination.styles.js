@@ -36,6 +36,11 @@ export const StyledTabbed = styled.div`
 
 export const Img = styled.img`
   max-width: 60%;
+  justify-self: center;
+
+  ${media.tablet} {
+    max-width: 80%;
+  }
 
   ${media.desktop} {
     max-width: 100%;

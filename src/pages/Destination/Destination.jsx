@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
@@ -39,7 +40,15 @@ function Tabbed({ destinations }) {
 
   return (
     <StyledTabbed>
-      <Img src={activeDestination.images.png} alt={activeDestination.name} />
+      <motion.div
+        key={activeDestination.name}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.9 }}
+      >
+        <Img src={activeDestination.images.png} alt={activeDestination.name} />
+      </motion.div>
 
       <Content>
         <Tabs
@@ -88,20 +97,61 @@ function Tab({ children, isActive, onClick, index }) {
 function TabContent({ destination, index }) {
   return (
     <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
-      <Title>{destination.name}</Title>
-      <Paragraph>{destination.description}</Paragraph>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={destination.name}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Title>{destination.name}</Title>
+        </motion.div>
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={destination.description}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          <Paragraph>{destination.description}</Paragraph>
+        </motion.div>
+      </AnimatePresence>
 
       <Line />
 
       <Stats>
         <Stat>
-          <StatHeading>Avg. distance</StatHeading>
-          <StatParagraph>{destination.distance}</StatParagraph>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={destination.distance}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+            >
+              <StatHeading>Avg. distance</StatHeading>
+              <StatParagraph>{destination.distance}</StatParagraph>
+            </motion.div>
+          </AnimatePresence>
         </Stat>
 
         <Stat>
-          <StatHeading>Est. travel time</StatHeading>
-          <StatParagraph>{destination.travel}</StatParagraph>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={destination.travel}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+            >
+              <StatHeading>Est. travel time</StatHeading>
+              <StatParagraph>{destination.travel}</StatParagraph>
+            </motion.div>
+          </AnimatePresence>
         </Stat>
       </Stats>
     </Article>

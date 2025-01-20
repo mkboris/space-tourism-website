@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
@@ -36,20 +37,28 @@ function Tabbed({ technology }) {
 
   return (
     <StyledTabbed>
-      <picture>
-        <source
-          srcSet={activeTechnology.images.portrait}
-          media="(min-width: 64rem)"
-        />
-        <source
-          srcSet={activeTechnology.images.landscape}
-          media="(min-width: 41.25rem)"
-        />
-        <img
-          src={activeTechnology.images.portrait}
-          alt={activeTechnology.name}
-        />
-      </picture>
+      <motion.div
+        key={activeTechnology.name}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.9 }}
+      >
+        <picture>
+          <source
+            srcSet={activeTechnology.images.portrait}
+            media="(min-width: 64rem)"
+          />
+          <source
+            srcSet={activeTechnology.images.landscape}
+            media="(min-width: 41.25rem)"
+          />
+          <img
+            src={activeTechnology.images.portrait}
+            alt={activeTechnology.name}
+          />
+        </picture>
+      </motion.div>
 
       <Content>
         <Tabs
@@ -69,10 +78,30 @@ function TabContent({ techType, index }) {
     <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
       <Header>
         <Heading as="h2">THE TERMINOLOGY…</Heading>
-        <Heading as="h3">{techType.name}</Heading>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={techType.name}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
+            <Heading as="h3">{techType.name}</Heading>
+          </motion.div>
+        </AnimatePresence>
       </Header>
 
-      <Paragraph>{techType.description}</Paragraph>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={techType.description}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 10 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+        >
+          <Paragraph>{techType.description}</Paragraph>
+        </motion.div>
+      </AnimatePresence>
     </Article>
   );
 }

@@ -7,13 +7,9 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
-  function handleOpenMenu() {
-    setIsOpen(true);
-  }
-
-  function handleCloseMenu() {
-    setIsOpen(false);
-  }
+  const toggleNav = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -36,8 +32,8 @@ function Header() {
   return (
     <StyledHeader>
       <Logo />
-      <HamburgerBtn isOpen={isOpen} onOpenMenu={handleOpenMenu} />
-      <PageNav ref={menuRef} isOpen={isOpen} onCloseMenu={handleCloseMenu} />
+      <HamburgerBtn isOpen={isOpen} onOpenMenu={toggleNav} />
+      <PageNav ref={menuRef} isOpen={isOpen} onCloseMenu={toggleNav} />
     </StyledHeader>
   );
 }
