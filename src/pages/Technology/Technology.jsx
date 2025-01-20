@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
@@ -33,32 +33,41 @@ export default Technology;
 
 function Tabbed({ technology }) {
   const [activeTab, setActiveTab] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const activeTechnology = technology[activeTab];
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <StyledTabbed>
-      <motion.div
-        key={activeTechnology.name}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration: 0.9 }}
-      >
-        <picture>
-          <source
-            srcSet={activeTechnology.images.portrait}
-            media="(min-width: 64rem)"
-          />
-          <source
-            srcSet={activeTechnology.images.landscape}
-            media="(min-width: 41.25rem)"
-          />
-          <img
-            src={activeTechnology.images.portrait}
-            alt={activeTechnology.name}
-          />
-        </picture>
-      </motion.div>
+      {isMounted && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTechnology.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.9 }}
+          >
+            <picture>
+              <source
+                srcSet={activeTechnology.images.portrait}
+                media="(min-width: 64rem)"
+              />
+              <source
+                srcSet={activeTechnology.images.landscape}
+                media="(min-width: 41.25rem)"
+              />
+              <img
+                src={activeTechnology.images.portrait}
+                alt={activeTechnology.name}
+              />
+            </picture>
+          </motion.div>
+        </AnimatePresence>
+      )}
 
       <Content>
         <Tabs

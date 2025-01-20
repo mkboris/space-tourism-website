@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
@@ -31,7 +31,12 @@ export default Crew;
 
 function Tabbed({ crew }) {
   const [activeTab, setActiveTab] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const activeCrew = crew[activeTab];
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <StyledTabbed>
@@ -41,15 +46,20 @@ function Tabbed({ crew }) {
         <Tabs crew={crew} activeTab={activeTab} setActiveTab={setActiveTab} />
       </Content>
 
-      <motion.div
-        key={activeCrew.name}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration: 0.9 }}
-      >
-        <Img src={activeCrew.images.png} alt={activeCrew.name} />
-      </motion.div>
+      {isMounted && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            style={{ display: "flex", justifyContent: "center" }}
+            key={activeCrew.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.9 }}
+          >
+            <Img src={activeCrew.images.png} alt={activeCrew.name} />
+          </motion.div>
+        </AnimatePresence>
+      )}
     </StyledTabbed>
   );
 }
