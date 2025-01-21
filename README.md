@@ -40,7 +40,7 @@ Users should be able to:
 
 This project was relatively straightforward. I focused on learning how to build a single-page application (SPA) using React Router, and since the routing logic was simple, the implementation was easy to follow. Also, it was my first time working with Styled Components, and I really liked it. I plan to continue using it and learning more about its features and best practices.
 
-One area I encountered some challenges was setting different background images for individual pages while maintaining a semantic HTML structure and avoiding duplication. I addressed this by utilizing the `useLocation` hook from React Router, which retrieves the current route's path. Based on this path, I returned an array of image URLs and passed them as props to the StyledAppLayout component for dynamic background handling.
+One challenge I faced was setting different background images for individual pages while ensuring a semantic HTML structure and avoiding duplication. After some research and assistance, I resolved this by using the `useLocation` hook from React Router to retrieve the current route's path. Using this path, I generated an array of image URLs and passed them as props to the `StyledAppLayout` component for dynamic background handling.
 
 ```js
 const location = useLocation();
