@@ -36,6 +36,7 @@ export const StyledTabbed = styled.div`
 
 export const Img = styled.img`
   max-width: 60%;
+  height: auto;
 
   ${media.tablet} {
     max-width: 80%;

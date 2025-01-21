@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Heading, Span, Paragraph } from "../../components/Typography";
 import data from "../../data/data.json";
 import {
@@ -33,41 +33,35 @@ export default Technology;
 
 function Tabbed({ technology }) {
   const [activeTab, setActiveTab] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
   const activeTechnology = technology[activeTab];
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   return (
     <StyledTabbed>
-      {isMounted && (
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTechnology.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-          >
-            <picture>
-              <source
-                srcSet={activeTechnology.images.portrait}
-                media="(min-width: 64rem)"
-              />
-              <source
-                srcSet={activeTechnology.images.landscape}
-                media="(min-width: 41.25rem)"
-              />
-              <img
-                src={activeTechnology.images.portrait}
-                alt={activeTechnology.name}
-              />
-            </picture>
-          </motion.div>
-        </AnimatePresence>
-      )}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTechnology.name}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.7 }}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <picture>
+            <source
+              srcSet={activeTechnology.images.portrait}
+              media="(min-width: 64rem)"
+            />
+            <source
+              srcSet={activeTechnology.images.landscape}
+              media="(min-width: 41.25rem)"
+            />
+            <img
+              src={activeTechnology.images.portrait}
+              alt={activeTechnology.name}
+            />
+          </picture>
+        </motion.div>
+      </AnimatePresence>
 
       <Content>
         <Tabs
@@ -75,57 +69,58 @@ function Tabbed({ technology }) {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-
-        <TabContent techType={activeTechnology} index={activeTab} />
+        <TabContent techType={activeTechnology} />
       </Content>
     </StyledTabbed>
   );
 }
 
-function TabContent({ techType, index }) {
+function TabContent({ techType }) {
   return (
-    <Article id={`tab-panel-${index}`} role="tabpanel" aria-live="polite">
-      <Header>
-        <Heading as="h2">THE TERMINOLOGY…</Heading>
-        <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait">
+      <Article
+        key={techType.name}
+        id={`tab-panel-${techType.name}`}
+        role="tabpanel"
+        aria-live="polite"
+      >
+        <Header>
+          <Heading as="h2">THE TERMINOLOGY…</Heading>
           <motion.div
             key={techType.name}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            transition={{ duration: 0.4 }}
           >
             <Heading as="h3">{techType.name}</Heading>
           </motion.div>
-        </AnimatePresence>
-      </Header>
-
-      <AnimatePresence mode="wait">
+        </Header>
         <motion.div
           key={techType.description}
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 10 }}
-          transition={{ duration: 0.3, delay: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
         >
           <Paragraph>{techType.description}</Paragraph>
         </motion.div>
-      </AnimatePresence>
-    </Article>
+      </Article>
+    </AnimatePresence>
   );
 }
 
-function Tabs({ activeTab, setActiveTab }) {
+function Tabs({ technology, activeTab, setActiveTab }) {
   return (
     <StyledTabs role="tablist">
-      {[0, 1, 2].map((tabIndex) => (
+      {technology.map((_, index) => (
         <Tab
-          key={tabIndex}
-          isActive={activeTab === tabIndex}
-          onClick={() => setActiveTab(tabIndex)}
-          index={tabIndex}
+          key={index}
+          isActive={activeTab === index}
+          onClick={() => setActiveTab(index)}
+          index={index}
         >
-          {tabIndex + 1}
+          {index + 1}
         </Tab>
       ))}
     </StyledTabs>
